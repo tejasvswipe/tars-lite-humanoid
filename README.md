@@ -15,6 +15,7 @@ A buildable, **stationary** TARS-inspired desktop robot: two structural support 
 ## Package map
 
 - `docs/ENGINEERING_JOURNAL.md` — design choices, assumptions, assembly and bring-up plan.
+- `docs/WALKING_360_UPGRADE_PLAN.md` — staged biped walking and full-turn neck proposal, cost range and safety gates; planning only.
 - `docs/BOM.csv` — indicative line-item budget and exclusions.
 - `electronics/gerber/` — fabrication layers and drill files for the servo/sensor breakout PCB.
 - `electronics/kicad/` — PCB interface specification (editable geometry source in `generate_gerbers.py`).
@@ -49,4 +50,4 @@ This is a concept-to-prototype package, **not a certified product**. The hand-bu
 
 ## Publishing status
 
-Local Git commit created. GitHub publication is pending because the GitHub account connector is disabled in this session; no credential bypass was attempted.
+The repository is published privately at [github.com/tejasvswipe/tars-lite-humanoid](https://github.com/tejasvswipe/tars-lite-humanoid). The current CAD, firmware, PCB and $223 BOM still describe the stationary prototype; the walking/360° document is a staged proposal, not implemented hardware.
