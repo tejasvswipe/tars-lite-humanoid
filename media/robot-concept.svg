@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">TARS-Lite stationary humanoid concept</title><desc id="desc">Front three-quarter technical concept of a boxy desktop humanoid with a two-eye face, front ToF sensor, two servo arms and grippers, rear electronics bay callout, and fixed support legs.</desc>
+<defs>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#0b1324"/><stop offset="1" stop-color="#17263c"/></linearGradient>
+ <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#dce7ef"/><stop offset="1" stop-color="#8998a8"/></linearGradient>
+ <linearGradient id="panel" x2="0" y2="1"><stop stop-color="#526477"/><stop offset="1" stop-color="#29384a"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#020817" flood-opacity=".55"/></filter>
+ <style>
+ .label{font:600 20px Inter,Arial,sans-serif;fill:#e9f1f7}.sub{font:15px Inter,Arial,sans-serif;fill:#9fb1c3}.call{stroke:#71d1c0;stroke-width:2;fill:none}.thin{stroke:#9eb0c0;stroke-width:2}.metal{fill:url(#metal);stroke:#ecf5fa;stroke-width:2}.dark{fill:#253447;stroke:#90a2b3;stroke-width:2}.joint{fill:#182438;stroke:#7de0d0;stroke-width:3}.eye{fill:#6ee7e0;stroke:#d6ffff;stroke-width:2;filter:url(#shadow)}
+ </style>
+</defs>
+<rect width="1200" height="900" rx="28" fill="url(#bg)"/>
+<path d="M58 130H1140M58 820H1140" stroke="#31445d" stroke-width="1"/>
+<text x="64" y="72" fill="#f3f7fb" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="700">TARS-Lite | stationary desktop humanoid</text>
+<text x="66" y="105" class="sub">Concept geometry — fixed support legs, servo arms, front range sensing, rear-mounted electronics</text>
+<!-- Robot head -->
+<g filter="url(#shadow)">
+ <rect x="467" y="174" width="266" height="181" rx="22" class="metal"/>
+ <rect x="484" y="190" width="232" height="148" rx="15" fill="#243448" stroke="#71869a" stroke-width="2"/>
+ <circle cx="548" cy="244" r="23" class="eye"/><circle cx="652" cy="244" r="23" class="eye"/>
+ <rect x="575" y="286" width="50" height="27" rx="5" fill="#080f1a" stroke="#6ee7e0" stroke-width="2"/>
+ <circle cx="600" cy="299" r="5" fill="#e6ffff"/>
+ <rect x="454" y="349" width="292" height="18" rx="8" fill="#647588"/>
+ <!-- torso -->
+ <rect x="423" y="376" width="354" height="279" rx="25" class="metal"/>
+ <rect x="447" y="397" width="306" height="236" rx="18" fill="url(#panel)" stroke="#8da0b2" stroke-width="2"/>
+ <rect x="476" y="428" width="248" height="174" rx="10" fill="#172538" stroke="#607489" stroke-width="2"/>
+ <path d="M497 460H701M497 484H701M497 508H701M497 532H701M497 556H701" stroke="#344a60" stroke-width="2"/>
+ <rect x="516" y="449" width="74" height="54" rx="6" fill="#275c6b" stroke="#6edacc" stroke-width="2"/>
+ <text x="553" y="481" text-anchor="middle" font-family="Arial" font-size="12" fill="#e8ffff">ESP32-S3</text>
+ <rect x="611" y="449" width="83" height="54" rx="6" fill="#35485d" stroke="#92a6b9" stroke-width="2"/>
+ <text x="652" y="481" text-anchor="middle" font-family="Arial" font-size="12" fill="#f1f6fa">Pi 5 1GB</text>
+ <rect x="516" y="520" width="74" height="47" rx="6" fill="#555a4c" stroke="#e3ca79" stroke-width="2"/>
+ <text x="553" y="548" text-anchor="middle" font-family="Arial" font-size="12" fill="#fff7dc">UNO R4</text>
+ <circle cx="695" cy="579" r="5" fill="#6ee7e0"/>
+</g>
+<!-- Arms and joints -->
+<g filter="url(#shadow)">
+ <circle cx="423" cy="410" r="25" class="joint"/><circle cx="777" cy="410" r="25" class="joint"/>
+ <path d="M403 430L351 518L379 536L441 447Z" class="metal"/><path d="M797 430L849 518L821 536L759 447Z" class="metal"/>
+ <circle cx="365" cy="527" r="19" class="joint"/><circle cx="835" cy="527" r="19" class="joint"/>
+ <path d="M352 544L315 623L343 638L382 553Z" class="metal"/><path d="M848 544L885 623L857 638L818 553Z" class="metal"/>
+ <rect x="295" y="624" width="65" height="38" rx="10" class="dark"/><rect x="840" y="624" width="65" height="38" rx="10" class="dark"/>
+ <path d="M307 655L294 682M347 655L359 682M852 655L839 682M892 655L905 682" stroke="#cbd7df" stroke-width="8" stroke-linecap="round"/>
+</g>
+<!-- Legs and feet, rigid support -->
+<g filter="url(#shadow)">
+ <rect x="467" y="648" width="93" height="125" rx="13" class="metal"/><rect x="640" y="648" width="93" height="125" rx="13" class="metal"/>
+ <rect x="446" y="765" width="139" height="31" rx="12" class="dark"/><rect x="615" y="765" width="139" height="31" rx="12" class="dark"/>
+ <path d="M468 675H559M641 675H732" stroke="#718499" stroke-width="4"/>
+</g>
+<!-- callouts -->
+<path d="M624 299H863L907 255" class="call"/><circle cx="624" cy="299" r="4" fill="#71d1c0"/>
+<text x="923" y="247" class="label">Front ToF range sensor</text><text x="923" y="271" class="sub">VL53L0X-class module</text>
+<path d="M724 475H880L910 449" class="call"/><circle cx="724" cy="475" r="4" fill="#71d1c0"/>
+<text x="924" y="441" class="label">Rear “spine” electronics bay</text><text x="924" y="465" class="sub">Pi 5 + ESP32-S3 + UNO R4</text>
+<path d="M875 583H921L944 555" class="call"/><circle cx="875" cy="583" r="4" fill="#71d1c0"/>
+<text x="958" y="546" class="label">Servo arms + grippers</text><text x="958" y="570" class="sub">Shoulder / elbow / pinch hand</text>
+<path d="M692 713H883L917 744" class="call"/><circle cx="692" cy="713" r="4" fill="#71d1c0"/>
+<text x="932" y="744" class="label">Two fixed support legs</text><text x="932" y="768" class="sub">Not actuated — not a walking robot</text>
+<rect x="64" y="842" width="1072" height="31" rx="8" fill="#27384e"/>
+<text x="600" y="864" text-anchor="middle" fill="#b9c8d7" font-family="Inter,Arial,sans-serif" font-size="14">Concept only • verify component dimensions, current limits, clearances, and print fit before fabrication</text>
+</svg>

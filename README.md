@@ -24,6 +24,14 @@ A buildable, **stationary** TARS-inspired desktop robot: two structural support 
 - `mechanical/stl/` — rendered STL meshes for the individual parts.
 - `firmware/` — pin map, ESP32-S3 servo/sensor scaffold, and Arduino eye/button sketch.
 - `pi/` — lightweight serial telemetry monitor for Raspberry Pi OS Lite.
+- `media/robot-concept.svg` / `.png` — editable concept illustration and preview.
+- `media/system-architecture.mmd`, `.svg` / `.png` — source and exports of the controller/sensor/power diagram.
+
+## Visual previews
+
+![TARS-Lite stationary robot concept](media/robot-concept.png)
+
+![TARS-Lite controller and sensor architecture](media/system-architecture.png)
 
 ## First build limits
 

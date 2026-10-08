@@ -1,0 +1,32 @@
+---
+config:
+  theme: dark
+  themeVariables:
+    background: "#0b1324"
+    primaryColor: "#243a50"
+    primaryTextColor: "#f3f7fb"
+    primaryBorderColor: "#5acbb9"
+    lineColor: "#87a4bc"
+    edgeLabelBackground: "#1b2a3c"
+    secondaryColor: "#173b40"
+    tertiaryColor: "#323946"
+---
+flowchart LR
+  PI["Raspberry Pi 5 1 GB<br/>Raspberry Pi OS Lite<br/>serial logger"] <-->|"USB CDC telemetry"| MCU["ESP32-S3<br/>servo PWM + I2C sensor polling"]
+  ARD["Arduino UNO R4 Minima<br/>eye LEDs + button event"] <-->|"UART 115200<br/>level shift Arduino TX"| MCU
+  MCU -->|"I2C 3.3 V"| TOF["VL53L0X-class ToF<br/>front face"]
+  MCU -->|"I2C 3.3 V"| IMU["MPU6050-class IMU<br/>torso / rear spine"]
+  MCU -->|"6 PWM signals"| PCB["ServoBus-6 PCB<br/>passive breakout"]
+  PCB -->|"PWM + external 5 V/GND"| SERVOS["6 micro servos<br/>arms + grippers"]
+  PSU["Regulated fused 5 V servo supply"] -->|"separate servo rail"| PCB
+  PIPSU["Dedicated 5.1 V / 5 A USB-C supply"] --> PI
+  ARD -->|"5 V logic LEDs"| EYES["2 fixed face LEDs"]
+  LEGS["Rigid support legs<br/>not actuated"] -. "mechanical structure" .-> MCU
+  classDef brain fill:#243a50,color:#fff,stroke:#5acbb9,stroke-width:2px;
+  classDef sensor fill:#173b40,color:#eff,stroke:#56cbb8;
+  classDef power fill:#573d2a,color:#fff,stroke:#eca66f;
+  classDef mech fill:#323946,color:#fff,stroke:#a8b6c4;
+  class PI,MCU,ARD brain;
+  class TOF,IMU sensor;
+  class PSU,PIPSU power;
+  class PCB,SERVOS,EYES,LEGS mech;
