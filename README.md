@@ -16,6 +16,7 @@ A buildable, **stationary** TARS-inspired desktop robot: two structural support 
 
 - `docs/ENGINEERING_JOURNAL.md` — design choices, assumptions, assembly and bring-up plan.
 - `docs/WALKING_360_UPGRADE_PLAN.md` — staged biped walking and full-turn neck proposal, cost range and safety gates; planning only.
+- `docs/WALKING_360_BOM.csv` — line-item upgrade BOM with price ranges, source/stock notes, allowances and contingency.
 - `docs/BOM.csv` — indicative line-item budget and exclusions.
 - `electronics/gerber/` — fabrication layers and drill files for the servo/sensor breakout PCB.
 - `electronics/kicad/` — PCB interface specification (editable geometry source in `generate_gerbers.py`).

@@ -68,6 +68,8 @@ The existing `ServoBus-6` PCB and six PWM servo headers are **not compatible wit
 
 This is a planning estimate, not a purchase quote. The range assumes the previous project's Raspberry Pi 5, ESP32-S3, Arduino, their Pi accessories, and the ToF/IMU/eye parts are bought/reused where applicable; the old micro servos, fixed-leg design, 5 V rail and PWM breakout are not counted as walking hardware.
 
+For quantities, low/high line estimates, source status, and allowances, see [`WALKING_360_BOM.csv`](WALKING_360_BOM.csv).
+
 | Cost item | Low | High | Basis |
 |---|---:|---:|---|
 | 16-DOF biped reference kit | $593.89 | $593.89 | Retail listing; currently backordered; confirm availability/contents |
