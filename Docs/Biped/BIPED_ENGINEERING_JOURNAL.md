@@ -38,13 +38,13 @@ For reproducibility, run `generate_board.py` with the KiCad 7 `pcbnew` module, t
 
 ## Package contents
 
-- `docs/COMPLETE_BIPED_BUILD.md` — integrated build, power, pin map, gates and limitations.
-- `docs/WALKING_360_BOM.csv` — line items, status/source notes, subtotals and 15% reserve.
-- `docs/BIPED_WIRING.md` — the connector and power-domain map.
-- `mechanical/biped_tarslite.scad` and `mechanical/biped_stl/` — editable shells/neck/gripper add-ons and exported meshes.
-- `electronics/dxl_neck/` — KiCad source, fill/export helpers, component BOM, schematic notes and fabrication pack.
-- `firmware/esp32_biped_head.ino` — guarded neck, sensor and gripper scaffold; `firmware/eyes_button.ino` remains the Arduino face sketch.
-- `pi/head_console.py` — serial command console.
+- `COMPLETE_BIPED_BUILD.md` — integrated build, power, pin map, gates and limitations.
+- `WALKING_360_BOM.csv` — line items, status/source notes, subtotals and 15% reserve.
+- `BIPED_WIRING.md` — the connector and power-domain map.
+- `CAD/Biped/biped_tarslite.scad` and `CAD/Biped/biped_stl/` — editable shells/neck/gripper add-ons and exported meshes.
+- `PCB/DXL-Neck/` — KiCad source, fill/export helpers, component BOM, schematic notes and fabrication pack.
+- `Firmware/ESP32-Arduino/esp32_biped_head.ino` — guarded neck, sensor and gripper scaffold; `eyes_button.ino` remains the Arduino face sketch.
+- `Firmware/Raspberry-Pi/head_console.py` — serial command console.
 
 ## Validation snapshot
 

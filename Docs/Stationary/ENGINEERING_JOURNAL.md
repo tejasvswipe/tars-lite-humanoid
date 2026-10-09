@@ -31,7 +31,7 @@ Use an inline fuse on 5 V servo supply. Because low-cost servos can collectively
 
 ## 4. Indicative budget
 
-`docs/BOM.csv` currently totals **$223 estimated parts** before shipping/tax/tools, leaving $27 under the $250 cap. It includes a $45 Pi 5 1 GB (official launch pricing), a $20 Arduino UNO R4 Minima (official Arduino US store listing), and estimates for the Pi power supply, microSD, and cooling. It assumes an existing 3D printer/computer and excludes shipping/tax, battery and charger. Price references: https://www.raspberrypi.com/news/1gb-raspberry-pi-5-now-available-at-45-and-memory-driven-price-rises/ and https://store-usa.arduino.cc/products/uno-r4-minima. Raspberry Pi 5 requires a separate 5 V/5 A USB-C supply: https://www.raspberrypi.com/products/27w-power-supply/. These are planning estimates, not checkout prices; local tax/shipping can exceed the $250 cap.
+`BOM.csv` currently totals **$223 estimated parts** before shipping/tax/tools, leaving $27 under the $250 cap. It includes a $45 Pi 5 1 GB (official launch pricing), a $20 Arduino UNO R4 Minima (official Arduino US store listing), and estimates for the Pi power supply, microSD, and cooling. It assumes an existing 3D printer/computer and excludes shipping/tax, battery and charger. Price references: https://www.raspberrypi.com/news/1gb-raspberry-pi-5-now-available-at-45-and-memory-driven-price-rises/ and https://store-usa.arduino.cc/products/uno-r4-minima. Raspberry Pi 5 requires a separate 5 V/5 A USB-C supply: https://www.raspberrypi.com/products/27w-power-supply/. These are planning estimates, not checkout prices; local tax/shipping can exceed the $250 cap.
 
 ## 5. Mechanical plan
 

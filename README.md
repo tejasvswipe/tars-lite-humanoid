@@ -1,42 +1,40 @@
-# TARS-Lite — stationary baseline + biped prototype
+# TARS-Lite — biped prototype and stationary baseline
 
-This repository contains two clearly separated designs:
+A TARS-inspired robotics project organized into exactly four top-level categories: **`PCB/`, `CAD/`, `Firmware/`, and `Docs/`**. The root README and `.gitignore` remain at repository root.
 
-1. **Stationary v0.3 baseline:** a tabletop TARS-inspired robot with fixed support legs, six 5 V PWM servos, sensor breakout PCB and the original $223 estimated BOM. It does **not** walk.
-2. **Biped / 360° head package v1.0:** a complete *prototype design package* using a proven 16-DOF ROBOTIS MINI/Darwin-Mini gait base, custom TARS-style add-ons, a voltage-compatible XL-320 neck, head-angle sensor, grippers, firmware, wiring and a new neck-interface PCB. It is not yet physically fit-checked or gait-tested.
+## Repository structure
 
-## Biped package (latest)
+- [`PCB/`](PCB/) — KiCad source, PCB notes, Gerber/drill manufacturing files and previews.
+- [`CAD/`](CAD/) — editable OpenSCAD models, exported STL meshes and print guides.
+- [`Firmware/`](Firmware/) — ESP32-S3/Arduino firmware and Raspberry Pi utilities.
+- [`Docs/`](Docs/) — build guides, engineering journals, BOMs, wiring maps and visuals, separated into `Biped/`, `Stationary/` and `Media/`.
 
-- [`docs/COMPLETE_BIPED_BUILD.md`](docs/COMPLETE_BIPED_BUILD.md) — integrated architecture, wiring domains, staged build/acceptance gates, safety and realistic task scope.
-- [`docs/BIPED_ENGINEERING_JOURNAL.md`](docs/BIPED_ENGINEERING_JOURNAL.md) — design decisions, compatibility correction, validation snapshot and next gates.
-- [`docs/WALKING_360_BOM.csv`](docs/WALKING_360_BOM.csv) — reconciled line-item cost estimate: $981.33–$1,177.33 before contingency; $1,128.53–$1,353.93 with 15% contingency, before shipping/tax.
-- [`docs/WALKING_360_UPGRADE_PLAN.md`](docs/WALKING_360_UPGRADE_PLAN.md) — selected platform, compatibility correction, budget and source links.
-- [`docs/BIPED_WIRING.md`](docs/BIPED_WIRING.md) — connector/pin and power-domain wiring map.
-- [`mechanical/biped_tarslite.scad`](mechanical/biped_tarslite.scad) — editable parametric torso/head/neck/forearm/gripper add-ons.
-- [`mechanical/BIPED_PRINT_GUIDE.md`](mechanical/BIPED_PRINT_GUIDE.md) and [`mechanical/biped_stl/`](mechanical/biped_stl/) — print notes and exported STL parts.
-- [`electronics/dxl_neck/`](electronics/dxl_neck/) — KiCad PCB source generator, one-servo interface design notes, component BOM and Gerber/Excellon export pack.
-- [`firmware/esp32_biped_head.ino`](firmware/esp32_biped_head.ino) — guarded XL-320 head loop, absolute heading, sensor telemetry and two microservo grippers.
-- [`pi/head_console.py`](pi/head_console.py) — Raspberry Pi USB command console.
+Each category has its own README index. Files are grouped by design and function within those four folders.
 
-## Critical compatibility correction
+## Biped / 360° head prototype
 
-The earlier XL-430 neck suggestion is **not compatible with the XL-320 7.4 V actuator rail**. The biped package instead uses one additional XL-320 on a separate data bus and the same voltage class, with an AS5600 absolute angle sensor for continuous heading. Verify stock first: the reference kit and an extra XL-320 were shown backordered/sold out in the research snapshot. The head-interface PCB is for one neck servo only; it is not a walking-leg power distribution board.
+- [Integrated build guide](Docs/Biped/COMPLETE_BIPED_BUILD.md)
+- [Engineering journal](Docs/Biped/BIPED_ENGINEERING_JOURNAL.md)
+- [Walking and 360° BOM](Docs/Biped/WALKING_360_BOM.csv) — estimated **$1,128.53–$1,353.93 with 15% contingency**, before shipping/tax.
+- [Wiring map](Docs/Biped/BIPED_WIRING.md)
+- [Editable add-on CAD](CAD/Biped/biped_tarslite.scad), [print guide](CAD/Biped/BIPED_PRINT_GUIDE.md), and [STL meshes](CAD/Biped/biped_stl/)
+- [Neck-interface KiCad board](PCB/DXL-Neck/TARS-Lite-DXL-Neck.kicad_pcb) and [Gerber/drill ZIP](PCB/DXL-Neck/gerber/TARS-Lite-DXL-Neck-Gerbers.zip)
+- [ESP32-S3 head/gripper firmware](Firmware/ESP32-Arduino/esp32_biped_head.ino) and [Raspberry Pi console](Firmware/Raspberry-Pi/head_console.py)
 
-The manufacturer lower-body STL/STEP and gait examples are linked from the [official ROBOTIS MINI e-Manual](https://emanual.robotis.com/docs/en/edu/mini/). Vendor models are not redistributed in this repository.
+The biped lower body relies on a compatible ROBOTIS MINI/Darwin-Mini reference platform and its stock gait controller; vendor CAD and motion files are linked from the [official e-Manual](https://emanual.robotis.com/docs/en/edu/mini/) and are not redistributed here. The add-on design has not been physically assembled or fit-checked. The hand grippers are for very light objects; this is not a general-purpose human-task robot.
 
-## Original stationary package
+The neck uses one additional XL-320 on a separate data bus with AS5600 absolute heading feedback. The neck PCB is not a leg-bus power board. The ESP32-S3 firmware compiles for the `esp32-s3-devkitc-1` PlatformIO target, but has not been flashed or tested on physical hardware. Full PCB DRC/DFM and walking tests remain outstanding. Review the safety gates in the build guide before fabrication or motion.
 
-- `docs/ENGINEERING_JOURNAL.md` — original stationary design decisions and bring-up plan.
-- `docs/BOM.csv` — original stationary prototype BOM.
-- `electronics/gerber/` — original ServoBus-6 PWM/sensor board fabrication files (not a DYNAMIXEL leg controller).
-- `mechanical/tarslite.scad`, `mechanical/stl/` — original stationary CAD/STLs.
-- `firmware/` and `pi/` — original stationary firmware and telemetry logger.
-- `media/` — concept and system-architecture visuals.
+## Stationary v0.3 baseline
 
-## Scope and safety
+The original tabletop design has fixed support legs and does **not** walk. Its files are kept separate from the biped package:
 
-The biped package is a prototype design, not a validated product and not a general household robot. Begin with supervised, stock-platform gaits on a clear, padded floor; hold it on a tether; keep a hardwired actuator-power emergency stop reachable; and retest after every change in mass or center of gravity. The custom software does not implement balance, fall recovery, collision avoidance or autonomous human-level tasks. See the complete build guide before wiring or motion.
+- [Stationary engineering journal](Docs/Stationary/ENGINEERING_JOURNAL.md)
+- [Stationary BOM](Docs/Stationary/BOM.csv)
+- [Stationary wiring](Docs/Stationary/WIRING.md)
+- [Stationary CAD/STLs](CAD/Stationary/)
+- [ServoBus-6 board specification and Gerbers](PCB/ServoBus-6/)
 
 ## Repository
 
-Published privately at [github.com/tejasvswipe/tars-lite-humanoid](https://github.com/tejasvswipe/tars-lite-humanoid).
+Public GitHub repository: [tejasvswipe/tars-lite-humanoid](https://github.com/tejasvswipe/tars-lite-humanoid).

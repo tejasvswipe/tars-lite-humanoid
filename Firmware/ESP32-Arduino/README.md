@@ -4,7 +4,7 @@ This folder contains two separate firmware tracks. Do not mix their pin maps or 
 
 ## Stationary v0.3 baseline
 
-`tarslite.ino` is the original ESP32-S3 stationary scaffold. Install ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050 and Adafruit Unified Sensor. It drives at most one PWM channel by default and only reports sensor telemetry. `eyes_button.ino` is the Arduino UNO R4 Minima face indicator. For the original stationary setup, see [`../docs/WIRING.md`](../docs/WIRING.md).
+`tarslite.ino` is the original ESP32-S3 stationary scaffold. Install ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050 and Adafruit Unified Sensor. It drives at most one PWM channel by default and only reports sensor telemetry. `eyes_button.ino` is the Arduino UNO R4 Minima face indicator. For the original stationary setup, see [`../../Docs/Stationary/WIRING.md`](../../Docs/Stationary/WIRING.md).
 
 ## Biped add-on v1.0
 
@@ -12,7 +12,7 @@ This folder contains two separate firmware tracks. Do not mix their pin maps or 
 
 Required Arduino libraries: Dynamixel2Arduino, ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050, and Adafruit Unified Sensor. A dependency manifest is in `platformio-biped.ini`. The current source **compiled successfully** with PlatformIO for `esp32-s3-devkitc-1` (6.6% RAM, 11.0% flash); it has not been flashed to or tested on physical hardware. Confirm the exact ESP32-S3 board variant and review library versions before deployment.
 
-The proposed pin map is in [`../docs/BIPED_WIRING.md`](../docs/BIPED_WIRING.md). Confirm every pin against the purchased DevKit. The custom DXL interface board level-shifts UART and passes a separately fused 6–8.4 V branch for **one** XL-320 only. Keep it off the 16-joint bus power distribution.
+The proposed pin map is in [`../../Docs/Biped/BIPED_WIRING.md`](../../Docs/Biped/BIPED_WIRING.md). Confirm every pin against the purchased DevKit. The custom DXL interface board level-shifts UART and passes a separately fused 6–8.4 V branch for **one** XL-320 only. Keep it off the 16-joint bus power distribution.
 
 At boot, neck torque is off and no head motion is commanded. Send `ARM`, then `HEAD <0..359>`; `STOP` stops; `DISARM` turns neck torque off. A 10-second command timeout disarms the neck. Verify direction and the encoder magnet gap on a supported bench fixture before mounting the head. These controls are not a safety-rated emergency stop.
 

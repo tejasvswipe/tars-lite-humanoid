@@ -8,7 +8,7 @@
 - Keep the ESP32-S3, Raspberry Pi 5 1GB and Arduino UNO R4 Minima for the add-on functions: ESP32 head control/sensors/gripper PWM, Pi command console/logging, Arduino eye LEDs/button events. The reference kit's controller stays responsible for gait; no two controllers drive one DYNAMIXEL bus.
 - Use a spare/additional XL-320 for the neck, not the earlier XL-430 proposal. The XL-320 is rated for 6–8.4 V (7.4 V recommended), supports wheel mode/endless turn, and is the same voltage class as the biped kit's joints. Its wheel mode does not track absolute turn count; the separate AS5600 sensor provides 0–360° heading.
 - Carry head weight on a 608 bearing. Limit the rotating head to a lightweight target (≤150 g) and keep its center of mass near the axis. Use the slip ring only for low-current eye wires.
-- Reuse the existing ServoBus-6 board for two low-current 5 V hand microservos and sensor breakouts. The new `electronics/dxl_neck/` board is only a one-servo logic translator and fused neck branch; it is not the walking-leg power board.
+- Reuse the existing ServoBus-6 board for two low-current 5 V hand microservos and sensor breakouts. The new `PCB/DXL-Neck/` board is only a one-servo logic translator and fused neck branch; it is not the walking-leg power board.
 
 ## Current planning budget
 

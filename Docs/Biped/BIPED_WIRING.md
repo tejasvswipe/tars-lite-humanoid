@@ -1,6 +1,6 @@
 # Biped v1.0 — Wiring and Power Map
 
-This wiring plan is for the **biped add-on package only**. The older [`WIRING.md`](WIRING.md) describes the stationary prototype and its PWM arms; do not use its six-servo map for the walking joints.
+This wiring plan is for the **biped add-on package only**. The older [`WIRING.md`](../Stationary/WIRING.md) describes the stationary prototype and its PWM arms; do not use its six-servo map for the walking joints.
 
 ## Controller and signal map
 

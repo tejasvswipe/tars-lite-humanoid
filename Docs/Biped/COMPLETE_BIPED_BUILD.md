@@ -43,22 +43,22 @@ Manufacturer data: [XL-320 specification and communication circuit](https://docs
 
 ## PCB package
 
-- `electronics/gerber/` is the earlier ServoBus-6 low-voltage PWM/sensor board. For this biped build it is restricted to two low-current 5 V microservos and 3.3 V sensors; it does not drive the walking legs.
-- `electronics/dxl_neck/` contains the new editable KiCad neck-interface PCB and exported Gerber/Excellon fabrication files. It converts ESP32 3.3 V UART to the XL-320 TTL half-duplex bus with a 74HCT buffer and direction inversion, and provides a separately fused, single-servo power branch. The PCB is **not** the 16-actuator leg power distribution board.
+- `PCB/ServoBus-6/gerber/` is the earlier ServoBus-6 low-voltage PWM/sensor board. For this biped build it is restricted to two low-current 5 V microservos and 3.3 V sensors; it does not drive the walking legs.
+- `PCB/DXL-Neck/` contains the new editable KiCad neck-interface PCB and exported Gerber/Excellon fabrication files. It converts ESP32 3.3 V UART to the XL-320 TTL half-duplex bus with a 74HCT buffer and direction inversion, and provides a separately fused, single-servo power branch. The PCB is **not** the 16-actuator leg power distribution board.
 - Inspect the board in KiCad/Gerber viewer and **run KiCad DRC locally before fabrication**; a full PCB DRC has not been executed in this package. The generated revision has 0 open KiCad connectivity items after zone fill and 0 flags in a supplementary geometric trace/pad screen; that screen is not a DRC substitute. Check fuse orientation, connector polarity/adapter wiring, track widths and all power-net clearances. Bench-test the first board with one XL-320 and a current-limited supply.
 
 ## Mechanical package
 
-- Editable add-on source: `mechanical/biped_tarslite.scad`.
-- Printable STL outputs: `mechanical/biped_stl/`.
+- Editable add-on source: `CAD/Biped/biped_tarslite.scad`.
+- Printable STL outputs: `CAD/Biped/biped_stl/`.
 - Vendor lower-body STEP/STL and stock assembly guide are linked from the [ROBOTIS MINI e-Manual](https://emanual.robotis.com/docs/en/edu/mini/); vendor files are not republished here.
 - The 6-mm-grid host slots and XL-320 horn adapter are deliberately adjustable. Print coupons and measure your actual kit before printing the full set. Do not assume the TARS shell fits without adjustment.
 
 ## Firmware and operation
 
-1. Flash `firmware/esp32_biped_head.ino` to an ESP32-S3 using the Arduino framework, after installing the listed libraries. Its default state is **unarmed** and the head velocity is zero.
-2. Start the Pi console with `python3 pi/head_console.py --port /dev/ttyACM0`. Commands are clamped to the firmware's safe operating range; use `DISARM` when finished.
-3. Load `firmware/eyes_button.ino` on the Arduino. Its eyes are an indicator only; its button sends an event and is not a safety switch.
+1. Flash `Firmware/ESP32-Arduino/esp32_biped_head.ino` to an ESP32-S3 using the Arduino framework, after installing the listed libraries. Its default state is **unarmed** and the head velocity is zero.
+2. Start the Pi console with `python3 Firmware/Raspberry-Pi/head_console.py --port /dev/ttyACM0`. Commands are clamped to the firmware's safe operating range; use `DISARM` when finished.
+3. Load `Firmware/ESP32-Arduino/eyes_button.ino` on the Arduino. Its eyes are an indicator only; its button sends an event and is not a safety switch.
 4. Run stock biped motions only through the manufacturer-supported controller/app. First verify actuator IDs, pose and all joints with the robot lifted and supported. Do not run a walking motion until the shell, battery, center of gravity, and cable clearance have been checked.
 5. The custom software does **not** implement biped balance, fall recovery, collision avoidance, voice recognition, or autonomous household task planning. The stock reference gait is not guaranteed after changing robot mass or center of gravity.
 

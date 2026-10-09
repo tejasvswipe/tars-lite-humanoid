@@ -1,6 +1,6 @@
 # TARS-Lite wiring and assembly notes (v0.3)
 
-> **Stationary prototype only.** The walking/360° package has a separate leg bus, head bus and power map in [`BIPED_WIRING.md`](BIPED_WIRING.md). Do not use this six-PWM layout for the walking joints.
+> **Stationary prototype only.** The walking/360° package has a separate leg bus, head bus and power map in [`BIPED_WIRING.md`](../Biped/BIPED_WIRING.md). Do not use this six-PWM layout for the walking joints.
 
 ## Controller roles
 
