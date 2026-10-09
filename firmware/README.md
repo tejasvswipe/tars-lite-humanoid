@@ -10,7 +10,7 @@ This folder contains two separate firmware tracks. Do not mix their pin maps or 
 
 `esp32_biped_head.ino` is for an ESP32-S3 DevKitC-1-class board. It controls a **separate, neck-only XL-320 bus**, reads an AS5600 absolute angle sensor plus the ToF/IMU, and drives two small gripper servos through the existing ServoBus-6 board. The stock ROBOTIS OpenCM controller remains responsible for the 16 leg/arm gait actuators.
 
-Required Arduino libraries: Dynamixel2Arduino, ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050, and Adafruit Unified Sensor. A dependency manifest is in `platformio-biped.ini`; compile for the exact ESP32-S3 board and review the Arduino library versions before deployment.
+Required Arduino libraries: Dynamixel2Arduino, ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050, and Adafruit Unified Sensor. A dependency manifest is in `platformio-biped.ini`. The current source **compiled successfully** with PlatformIO for `esp32-s3-devkitc-1` (6.6% RAM, 11.0% flash); it has not been flashed to or tested on physical hardware. Confirm the exact ESP32-S3 board variant and review library versions before deployment.
 
 The proposed pin map is in [`../docs/BIPED_WIRING.md`](../docs/BIPED_WIRING.md). Confirm every pin against the purchased DevKit. The custom DXL interface board level-shifts UART and passes a separately fused 6–8.4 V branch for **one** XL-320 only. Keep it off the 16-joint bus power distribution.
 

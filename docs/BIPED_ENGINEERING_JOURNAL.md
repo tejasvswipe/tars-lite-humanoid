@@ -53,7 +53,7 @@ For reproducibility, run `generate_board.py` with the KiCad 7 `pcbnew` module, t
 | BOM | Parsed line items and totals reconcile: $981.33–$1,177.33 before reserve; $1,128.53–$1,353.93 with 15% reserve | Confirm live stock, final kit contents, regional price, shipping/tax and actual power draw |
 | PCB connectivity | KiCad reports 0 open items after zone fill | Full KiCad GUI DRC; inspect connector orientation and Gerber/drill layers; DFM review |
 | PCB trace precheck | 0 different-net track/pad flags in supplementary geometric screen | Not a substitute for KiCad DRC or fab-house checks |
-| Firmware | Source and configuration are included; default state is unarmed | Compile for exact ESP32-S3 board, verify library/API versions, serial levels, actuator ID/baud and bench test |
+| Firmware | PlatformIO compile succeeded for `esp32-s3-devkitc-1` (6.6% RAM, 11.0% flash); no hardware flash/test | Flash the exact board, verify UART levels, sensor reads, actuator ID/baud and safe motion on a bench fixture |
 | Mechanical | Parametric model and STL add-ons are included | Fit coupons to the exact host kit; measure printed mass/CG, horn geometry and 360° clearance |
 | Walking | Uses the manufacturer's stock gait package | Tethered/padded-floor test with shell removed, then incremental mass additions; no autonomous balance or fall recovery |
 
