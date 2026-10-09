@@ -1,5 +1,7 @@
 # TARS-Lite wiring and assembly notes (v0.3)
 
+> **Stationary prototype only.** The walking/360° package has a separate leg bus, head bus and power map in [`BIPED_WIRING.md`](BIPED_WIRING.md). Do not use this six-PWM layout for the walking joints.
+
 ## Controller roles
 
 - **Raspberry Pi 5 1 GB:** headless Raspberry Pi OS Lite telemetry logger, connected by USB to ESP32. This memory tier is not for local vision/LLM workloads.

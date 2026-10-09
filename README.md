@@ -1,54 +1,42 @@
-# TARS-Lite — budget tabletop humanoid prototype
+# TARS-Lite — stationary baseline + biped prototype
 
-A buildable, **stationary** TARS-inspired desktop robot: two structural support legs, a torso, two articulated arms ending in simple two-finger grippers, and one head with two fixed LED eyes. Revision 0.3 includes a front time-of-flight distance sensor, internal IMU, ESP32-S3, Pi 5 and Arduino. This is an educational prototype, not a walking or load-bearing robot.
+This repository contains two clearly separated designs:
 
-## Scope and budget decisions
+1. **Stationary v0.3 baseline:** a tabletop TARS-inspired robot with fixed support legs, six 5 V PWM servos, sensor breakout PCB and the original $223 estimated BOM. It does **not** walk.
+2. **Biped / 360° head package v1.0:** a complete *prototype design package* using a proven 16-DOF ROBOTIS MINI/Darwin-Mini gait base, custom TARS-style add-ons, a voltage-compatible XL-320 neck, head-angle sensor, grippers, firmware, wiring and a new neck-interface PCB. It is not yet physically fit-checked or gait-tested.
 
-- Target ceiling: **USD $250**, indicative parts budget before local shipping/tax. Current all-three-controller estimate is **$223**, including a $25 contingency; shipping/tax may exceed the cap.
-- Controllers: **ESP32-S3** handles servo PWM and sensor polling; **Raspberry Pi 5 1 GB** runs a lightweight headless logger over USB serial; **Arduino UNO R4 Minima** handles the two eye LEDs and reports a local button event over UART. The 1 GB Pi is not a vision/LLM machine.
-- The first build does **not** walk. Legs are rigid, wide-set supports; do not install leg joints or allow it to stand unsupported until separately engineered and tested.
-- Six micro servos: shoulder/elbow/gripper on each side. Eyes are fixed LEDs. Sensors: VL53L0X-class front distance ToF module + MPU6050-class IMU. Both share I2C; the IMU measures tilt/acceleration, not safe balance control.
-- Servos use a separate regulated 5 V supply. Do not power servos from the ESP32 3.3 V pin or the Pi. Join supply ground and controller ground.
-- The custom PCB is a low-voltage breakout/distribution board, not a motor driver or power supply. It routes PWM signals and distributes externally regulated servo power; sensor header carries 3.3 V, GND, SDA and SCL.
-- Reuse a 3D printer and soldering tools. The Pi 5 supply/storage/cooling are included as estimates; paid 3D-print service, tools, shipping and tax are excluded.
+## Biped package (latest)
 
-## Package map
+- [`docs/COMPLETE_BIPED_BUILD.md`](docs/COMPLETE_BIPED_BUILD.md) — integrated architecture, wiring domains, staged build/acceptance gates, safety and realistic task scope.
+- [`docs/BIPED_ENGINEERING_JOURNAL.md`](docs/BIPED_ENGINEERING_JOURNAL.md) — design decisions, compatibility correction, validation snapshot and next gates.
+- [`docs/WALKING_360_BOM.csv`](docs/WALKING_360_BOM.csv) — reconciled line-item cost estimate: $981.33–$1,177.33 before contingency; $1,128.53–$1,353.93 with 15% contingency, before shipping/tax.
+- [`docs/WALKING_360_UPGRADE_PLAN.md`](docs/WALKING_360_UPGRADE_PLAN.md) — selected platform, compatibility correction, budget and source links.
+- [`docs/BIPED_WIRING.md`](docs/BIPED_WIRING.md) — connector/pin and power-domain wiring map.
+- [`mechanical/biped_tarslite.scad`](mechanical/biped_tarslite.scad) — editable parametric torso/head/neck/forearm/gripper add-ons.
+- [`mechanical/BIPED_PRINT_GUIDE.md`](mechanical/BIPED_PRINT_GUIDE.md) and [`mechanical/biped_stl/`](mechanical/biped_stl/) — print notes and exported STL parts.
+- [`electronics/dxl_neck/`](electronics/dxl_neck/) — KiCad PCB source generator, one-servo interface design notes, component BOM and Gerber/Excellon export pack.
+- [`firmware/esp32_biped_head.ino`](firmware/esp32_biped_head.ino) — guarded XL-320 head loop, absolute heading, sensor telemetry and two microservo grippers.
+- [`pi/head_console.py`](pi/head_console.py) — Raspberry Pi USB command console.
 
-- `docs/ENGINEERING_JOURNAL.md` — design choices, assumptions, assembly and bring-up plan.
-- `docs/WALKING_360_UPGRADE_PLAN.md` — staged biped walking and full-turn neck proposal, cost range and safety gates; planning only.
-- `docs/WALKING_360_BOM.csv` — line-item upgrade BOM with price ranges, source/stock notes, allowances and contingency.
-- `docs/BOM.csv` — indicative line-item budget and exclusions.
-- `electronics/gerber/` — fabrication layers and drill files for the servo/sensor breakout PCB.
-- `electronics/kicad/` — PCB interface specification (editable geometry source in `generate_gerbers.py`).
-- `electronics/generate_gerbers.py` — deterministic generator for the simple through-hole board files.
-- `mechanical/tarslite.scad` — parametric OpenSCAD assembly and print geometry.
-- `mechanical/PRINT_GUIDE.md` — part quantities, fit checks, and slicer starting points.
-- `mechanical/stl/` — rendered STL meshes for the individual parts.
-- `firmware/` — pin map, ESP32-S3 servo/sensor scaffold, and Arduino eye/button sketch.
-- `pi/` — lightweight serial telemetry monitor for Raspberry Pi OS Lite.
-- `media/robot-concept.svg` / `.png` — editable concept illustration and preview.
-- `media/system-architecture.mmd`, `.svg` / `.png` — source and exports of the controller/sensor/power diagram.
+## Critical compatibility correction
 
-## Visual previews
+The earlier XL-430 neck suggestion is **not compatible with the XL-320 7.4 V actuator rail**. The biped package instead uses one additional XL-320 on a separate data bus and the same voltage class, with an AS5600 absolute angle sensor for continuous heading. Verify stock first: the reference kit and an extra XL-320 were shown backordered/sold out in the research snapshot. The head-interface PCB is for one neck servo only; it is not a walking-leg power distribution board.
 
-![TARS-Lite stationary robot concept](media/robot-concept.png)
+The manufacturer lower-body STL/STEP and gait examples are linked from the [official ROBOTIS MINI e-Manual](https://emanual.robotis.com/docs/en/edu/mini/). Vendor models are not redistributed in this repository.
 
-![TARS-Lite controller and sensor architecture](media/system-architecture.png)
+## Original stationary package
 
-## First build limits
+- `docs/ENGINEERING_JOURNAL.md` — original stationary design decisions and bring-up plan.
+- `docs/BOM.csv` — original stationary prototype BOM.
+- `electronics/gerber/` — original ServoBus-6 PWM/sensor board fabrication files (not a DYNAMIXEL leg controller).
+- `mechanical/tarslite.scad`, `mechanical/stl/` — original stationary CAD/STLs.
+- `firmware/` and `pi/` — original stationary firmware and telemetry logger.
+- `media/` — concept and system-architecture visuals.
 
-This is a concept-to-prototype package, **not a certified product**. The hand-built PCB should be visually inspected and checked for shorts before power. Confirm footprints, controller pins and sensor modules against the exact parts bought. Servos require external power and a common ground. Do not connect 5 V sensor outputs to ESP32 GPIO unless level-shifted. Keep pinch points clear; use low torque/speed and current-limited supply for first tests. A printed part, breakout, or servo failure could cause damage.
+## Scope and safety
 
-## Recommended build sequence
+The biped package is a prototype design, not a validated product and not a general household robot. Begin with supervised, stock-platform gaits on a clear, padded floor; hold it on a tether; keep a hardwired actuator-power emergency stop reachable; and retest after every change in mass or center of gravity. The custom software does not implement balance, fall recovery, collision avoidance or autonomous human-level tasks. See the complete build guide before wiring or motion.
 
-1. Inspect BOM, measure selected controller, servos and fasteners.
-2. Print structural parts; fit-test one joint before printing duplicates.
-3. Assemble PCB and inspect continuity/shorts.
-4. Test the ESP32 alone, then I2C sensors, then one servo with external 5 V, then add servos one at a time.
-5. Mount servos and tune neutral angles with arms supported; never command hard against a stop.
-6. Mount ToF sensor in the face; mount IMU rigidly in the torso; validate sensor axes.
-7. Add eyes and enclosure. Legs remain fixed supports.
+## Repository
 
-## Publishing status
-
-The repository is published privately at [github.com/tejasvswipe/tars-lite-humanoid](https://github.com/tejasvswipe/tars-lite-humanoid). The current CAD, firmware, PCB and $223 BOM still describe the stationary prototype; the walking/360° document is a staged proposal, not implemented hardware.
+Published privately at [github.com/tejasvswipe/tars-lite-humanoid](https://github.com/tejasvswipe/tars-lite-humanoid).

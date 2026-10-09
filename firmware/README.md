@@ -1,13 +1,21 @@
 # Firmware bring-up
 
-Target: ESP32-S3 DevKitC-1-class board, Arduino framework. Install libraries: ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050, Adafruit Unified Sensor. The exact GPIO choices must be checked against the purchased board and selected USB/flash configuration. The scaffold uses 6 PWM channels; do not assume every ESP32-S3 pin is free on every board variant.
+This folder contains two separate firmware tracks. Do not mix their pin maps or power assumptions.
 
-The companion `eyes_button.ino` is for an Arduino UNO R4 Minima and uses `Serial1` on D0/D1 for `NEAR`, `CLEAR`, `UNKNOWN` and `BTN` messages. Fit a level shifter on Arduino TX to ESP32 RX. The ESP32 USB serial text stream is intended for the Raspberry Pi monitor under `pi/`.
+## Stationary v0.3 baseline
 
-## Power and signal
+`tarslite.ino` is the original ESP32-S3 stationary scaffold. Install ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050 and Adafruit Unified Sensor. It drives at most one PWM channel by default and only reports sensor telemetry. `eyes_button.ino` is the Arduino UNO R4 Minima face indicator. For the original stationary setup, see [`../docs/WIRING.md`](../docs/WIRING.md).
 
-Use a separate regulated 5 V servo supply and inline fuse. Servo GND and ESP32 GND must be connected together. Never feed servo power into the 3V3 pin. Connect the six PWM signals to the passive PCB's PWM1–PWM6. Start with one servo only, unloaded and mechanically disconnected.
+## Biped add-on v1.0
 
-Suggested starting GPIOs (verify board variant): servo PWM 4, 5, 6, 7, 15, 16; I2C SDA 8/SCL 9; UART to Arduino TX 17/RX 18. Modules use 3.3 V-compatible I/O. Connect ToF and IMU in parallel on the same I2C bus; verify addresses and pullups. Firmware reports range and IMU acceleration/gyro over serial but does not use readings for motion or safety. At 50 Hz, calibrate each servo and slowly test around neutral; stop immediately if buzzing, heating, binding, brownout, or unexpected travel occurs. The source intentionally commands neutral pulses only.
+`esp32_biped_head.ino` is for an ESP32-S3 DevKitC-1-class board. It controls a **separate, neck-only XL-320 bus**, reads an AS5600 absolute angle sensor plus the ToF/IMU, and drives two small gripper servos through the existing ServoBus-6 board. The stock ROBOTIS OpenCM controller remains responsible for the 16 leg/arm gait actuators.
 
-For a Pi 5 upgrade, run high-level UI/vision on Pi and communicate desired bounded targets over USB serial/UART. Keep servo timing and any future emergency-stop handling on the ESP32. No Pi 5 is needed to test v0.1.
+Required Arduino libraries: Dynamixel2Arduino, ESP32Servo, Adafruit_VL53L0X, Adafruit_MPU6050, and Adafruit Unified Sensor. A dependency manifest is in `platformio-biped.ini`; compile for the exact ESP32-S3 board and review the Arduino library versions before deployment.
+
+The proposed pin map is in [`../docs/BIPED_WIRING.md`](../docs/BIPED_WIRING.md). Confirm every pin against the purchased DevKit. The custom DXL interface board level-shifts UART and passes a separately fused 6–8.4 V branch for **one** XL-320 only. Keep it off the 16-joint bus power distribution.
+
+At boot, neck torque is off and no head motion is commanded. Send `ARM`, then `HEAD <0..359>`; `STOP` stops; `DISARM` turns neck torque off. A 10-second command timeout disarms the neck. Verify direction and the encoder magnet gap on a supported bench fixture before mounting the head. These controls are not a safety-rated emergency stop.
+
+Grippers accept `GRIP L <0..180>` and `GRIP R <0..180>`. The hand servos must have their own regulated 5 V supply, separate from GPIO and actuator power. Their initial mechanical center must be set so the first commanded position does not bind.
+
+The Arduino eye/button firmware remains the face indicator; route only low-current LED conductors through the slip ring, with a resistor per LED. Level-shift Arduino TX toward ESP32 RX. A button event is informational and is not a safety function.

@@ -1,0 +1,13 @@
+Ref,Qty,Value / description,Package / footprint,Net function,Notes
+U1,1,74HCT125N,SOIC/DIP-14 socket through-hole,3.3V UART TX to 5V DXL DATA,Use HCT logic thresholds; other buffers disabled
+U2,1,74HCT14N,SOIC/DIP-14 socket through-hole,Invert active-high direction to active-low /OE,Unused inputs tied low
+R1,1,220 ohm,Axial DIN0207 10.16mm,Series output resistor,Place between buffer and bus DATA
+R2,1,10 kohm,Axial DIN0207 10.16mm,DXL DATA receive divider top,Reduces 5V DATA before ESP32 RX
+R3,1,20 kohm,Axial DIN0207 10.16mm,DXL DATA receive divider bottom,To GND; target about 3.3V high
+R4,1,10 kohm,Axial DIN0207 10.16mm,Direction input pull-down,Ensures receive/disabled state at reset
+C1-C2,2,100 nF,Disc through-hole P5.00mm,5V logic decoupling,Place close to each IC
+F1,1,PTC resettable fuse 2A hold,1812 SMD,2S power branch to one neck actuator,Check trip current and thermal derating from selected part datasheet
+J1,1,1x5 2.54mm header,Through-hole,5V GND TX RX DIR,ESP32 interface
+J2,1,1x3 2.54mm header,Through-hole,GND fused 2S VDD DATA,Use keyed adapter to XL-320 connector
+J3,1,2-pole 5.08mm terminal block,Through-hole,2S + and GND input,Strain-relieve the battery pigtail
+PCB,1,2-layer 1 oz prototype,85 x 55 mm,Signals plus one fused servo branch,Check trace/current and fab DRC before order

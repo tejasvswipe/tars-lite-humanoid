@@ -1,31 +1,32 @@
 Stage,Item,Qty,Unit low USD,Unit high USD,Line low USD,Line high USD,Status / source,Notes
-Biped baseline,ROBOTIS MINI 16-DOF reference kit,1,593.89,593.89,593.89,593.89,Listed retail price; backordered,Includes 16 XL-320 actuators/OpenCM controller/printable frame per retailer listing; verify exact contents and availability before purchase
-Existing control stack,Raspberry Pi 5 1GB,1,45,45,45,45,Official launch-price reference,High-level commands/logging only; not balance or safety controller
-Existing control stack,ESP32-S3 DevKitC-1-class board,1,15,15,15,15,Estimate carried from v0.3 BOM,Potential real-time bus/IMU controller only after protocol and loop tests
-Existing control stack,Arduino UNO R4 Minima,1,20,20,20,20,Official US store listing,Face LEDs and local input events only
-Existing control stack,Pi 5 USB-C supply,1,15,15,15,15,Estimate carried from v0.3 BOM,Separate Pi supply; confirm rating and local price
-Existing control stack,32 GB microSD card,1,10,10,10,10,Estimate carried from v0.3 BOM,OS and logs
-Existing control stack,Pi 5 active cooler,1,8,8,8,8,Estimate carried from v0.3 BOM,Confirm case/cooling arrangement
-Sensors and face,VL53L0X-class ToF module,1,10,10,10,10,Estimate carried from v0.3 BOM,Mount on torso/front for first rotating-head version to avoid routing I2C through slip ring
-Sensors and face,MPU6050-class IMU,1,5,5,5,5,Estimate carried from v0.3 BOM,Telemetry is not a safety-rated balance system
-Sensors and face,Two eye LEDs and current-limit resistors,1,3,3,3,3,Estimate carried from v0.3 BOM,Low-current head wiring only
-Sensors and face,Arduino-to-ESP32 UART level-shifter parts,1,2,2,2,2,Estimate carried from v0.3 BOM,Verify logic voltage and chosen interface
-Neck,Closed-loop multi-turn neck actuator (XL430 price reference),1,27.50,27.50,27.50,27.50,Listed reference price; currently shown sold out,Use an in-stock equivalent with position feedback and a full-turn range; final part selection pending
-Neck,6-wire miniature slip ring,1,17.50,17.50,17.50,17.50,Adafruit retail listing,"2 A per wire, 12 mm diameter; head signals/LED only, never main servo power"
-Neck,Neck bearing/coupler/printed mount/fasteners,1,20,45,20,45,Allowance,Fit to selected actuator and measured head mass
-Neck,Low-current flexible leads/connectors,1,10,20,10,20,Allowance,Continuity/noise-test across full head rotation
-Power,Battery pack sized after peak-current test,1,30,55,30,55,Allowance only,Voltage/chemistry/C rating not selected until actuator bus voltage and peak/stall current are verified
-Power,Matched balance charger,1,20,40,20,40,Allowance only,Must match the final selected battery chemistry/cell count
-Power,High-current actuator DC/DC regulator,1,20,45,20,45,Allowance only,Rate from measured simultaneous actuator demand; do not select by nominal servo rating alone
-Power,Separate 5 V logic regulator,1,10,20,10,20,Allowance only,Pi/logic rail isolated from actuator rail as appropriate
-Safety,Hardwired latching actuator-power emergency stop,1,10,20,10,20,Allowance,Must physically interrupt actuator power and remain reachable during tethered testing
-Safety,Main fuse and holder,1,5,10,5,10,Allowance,Size after measured peak current and wire/connector selection
-Safety,High-current harness/connectors/strain relief,1,20,40,20,40,Allowance,Current rating and injection points depend on final actuator bus
-TARS adaptation,Lightweight torso/head shell and print material,1,40,90,40,90,Allowance,Reuses existing printable concept only after mass/center-of-gravity redesign
-TARS adaptation,Lightweight grippers/linkage adapters,1,30,80,30,80,Allowance,Task scope initially limited to very light soft objects
-TARS adaptation,Fasteners/bearings/structural reinforcement,1,30,80,30,80,Allowance,Add reinforcement only after load and fit tests
-Integration,Serial bus interface/transceiver,1,15,35,15,35,Allowance,May not be needed while using kit controller; required only after ESP32 bus-control design is selected
-Integration,Power distribution board/harness adaptation,1,15,35,15,35,Allowance,"Redesign after connectors, currents and protection are known; old PWM PCB is not suitable for serial bus servos"
-,Subtotal,,,,1046.89,1386.89,Calculated,Before contingency/shipping/tax
-,Contingency (15%),,,,157.03,208.03,Calculated,15% of estimated subtotal
-,TOTAL PLANNING RANGE,,,,1203.92,1594.92,Calculated,Round to about USD 1200-1600 before shipping and tax; not a purchase quote
+Biped base,ROBOTIS MINI / Darwin-Mini 16-DOF reference kit,1,593.89,593.89,593.89,593.89,US retail reference; backordered,Listing describes XL-320 actuators/OpenCM/frame; verify exact kit contents and availability
+Controllers,Raspberry Pi 5 1GB,1,45,45,45,45,Official launch-price reference,High-level console/logging only; no local vision/LLM work
+Controllers,ESP32-S3 DevKitC-1-class board,1,15,15,15,15,Estimate,Neck angle loop; sensors and gripper PWM
+Controllers,Arduino UNO R4 Minima,1,20,20,20,20,Official US store reference,Eye LEDs and local button event only
+Controllers,OpenCM9.04-C controller,1,0,0,0,0,Included with reference kit,Retains stock manufacturer gait controller
+Controllers,Pi 5 compliant USB-C supply,1,15,15,15,15,Estimate,5.1V/5A-capable supply; not actuator power
+Controllers,32GB microSD card,1,10,10,10,10,Estimate,Pi OS Lite and logs
+Controllers,Pi 5 active cooler,1,8,8,8,8,Estimate,Check enclosure compatibility
+Sensors / face,VL53L0X-class ToF module,1,10,10,10,10,Estimate,Mounted on torso; not a safety sensor
+Sensors / face,MPU6050-class IMU,1,5,5,5,5,Estimate,Telemetry only; not a balance controller
+Sensors / neck,AS5600 absolute angle sensor plus diametric magnet,1,6,6,6,6,Estimate,Stationary sensor and rotor magnet provide 0–360° heading
+Sensors / face,Two eye LEDs and current-limit resistors,1,3,3,3,3,Estimate,Arduino controls LEDs through slip ring
+Sensors / face,Bidirectional UART level-shifter module,1,2,2,2,2,Estimate,Use for 3.3V ESP32 ↔ 5V Arduino TX/RX unless exact input thresholds are confirmed
+Neck,Additional XL-320 actuator,1,30.94,30.94,30.94,30.94,Official/retailer price reference; shown sold out,Same 6–8.4V class; separate neck DATA bus; availability risk
+Neck,6-wire miniature slip ring,1,17.50,17.50,17.50,17.50,Adafruit retail reference,Only low-current eye wiring; never actuator power
+Neck,608 bearing,1,2,5,2,5,Estimate,Nominal 8 x 22 x 7 mm; carries head structure independently of horn
+Neck,Printed neck base/rotor/horn adapter/fasteners,1,20,45,20,45,Allowance,Must be fit-tested to actual horn and host frame
+Neck,DXL logic-interface PCB components/fabrication,1,10,20,10,20,Estimate,3.3V UART ↔ 5V TTL translator; fused branch for one neck servo
+Neck,Neck pigtail/adapter/inline fuse,1,10,20,10,20,Allowance,Verify connector order and fuse/wire ratings
+Hands,9g-class microservos for simple grippers,2,5,8,10,16,Estimate,One per hand; independent regulated 5V rail
+Hands,Printed grippers/hinge/linkage hardware,2,10,17.50,20,35,Allowance,Very light soft objects only; forces not validated
+Hands,Regulated 5V 3A hand-servo supply,1,8,15,8,15,Estimate,Separate from Pi/ESP32 logic; reuse existing ServoBus-6 PCB
+Power,2S high-discharge actuator battery/harness,1,35,70,35,70,Allowance,Select only after measuring peak draw; check whether kit already includes a suitable battery
+Power,Matched balance charger,1,20,40,20,40,Allowance,Only if not included with chosen base kit; match chemistry/cell count
+Safety,Hardwired latching actuator emergency stop,1,10,20,10,20,Allowance,Interrupt actuator positive upstream of leg and neck branches
+Safety,Main fusing and rated high-current harness/connectors,1,20,40,20,40,Allowance,Size after current measurements; never use neck PCB for leg power
+TARS shell,Filament for printed torso/head/forearm add-ons,1,25,50,25,50,Estimate,Reuse vendor lower-body frame; printer service excluded
+TARS shell,Mounting hardware and cable strain relief,1,10,20,10,20,Allowance,Adjust after measuring the actual host frame
+,,,,,981.33,1177.33,Calculated,Subtotal before contingency; kit battery/charger contents may alter spend
+,,,,,147.20,176.60,Calculated,15% contingency
+,,,,,1128.53,1353.93,Calculated,Planning total before shipping and tax; indicative only
