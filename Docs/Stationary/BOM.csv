@@ -17,7 +17,7 @@ Through-hole PCB connectors and headers,1,7,Yes,six servo outputs, MCU and I2C s
 Fasteners - pins - jumper wire, strain relief, miscellaneous,1,10,M3 hardware I2C/UART leads assembly odds/ends
 PLA/PETG filament allocation,1,10,10,Yes,Approximately 250-350 g estimate; assumes printer already available
 Contingency,1,25,25,Yes,Price variation and replacements
-TOTAL,,,223,,Indicative all-three-controller parts subtotal before, shipping/tax/tools
+TOTAL,,,223,,Indicative all-three-controller parts subtotal before ; shipping/tax/tools
 Budget headroom,,,27,,Maximum $250 cap minus indicative subtotal , taxes/shipping may exceed it
 3D printer ,soldering station , computer,1,EXCLUDED,EXCLUDED,No,Assumed already available or borrowed
 Battery pack and charger,1,EXCLUDED,EXCLUDED,No,Prototype uses separate regulated supplies, no battery/charger design in v0.2
