@@ -13,7 +13,7 @@ MPU6050-class IMU module,1,5,5,Yes,Torso acceleration/tilt sensing over I2C; not
 Two-eye LED face parts and resistors,1,3,3,Yes,Fixed eyes driven by Arduino; current-limit each LED
 UART level shifter or resistor-divider parts,1,2,2,Yes,Protect ESP32 RX from 5 V Arduino TX; common ground
 Custom two-layer breakout PCB fab allowance,1,15,15,Yes,Estimate for prototype board order; shipping/tax may be extra
-Through-hole PCB connectors and headers,1,7,7,Yes,Power, six servo outputs, MCU and I2C sensor ports; verify pin order
+Through-hole PCB connectors and headers,1,7,Yes,six servo outputs, MCU and I2C sensor ports; verify pin order
 Fasteners, pins, jumper wire, strain relief, miscellaneous,1,10,10,Yes,M3 hardware, I2C/UART leads, assembly odds/ends
 PLA/PETG filament allocation,1,10,10,Yes,Approximately 250-350 g estimate; assumes printer already available
 Contingency,1,25,25,Yes,Price variation and replacements
